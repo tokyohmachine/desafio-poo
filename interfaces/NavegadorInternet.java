@@ -1,4 +1,4 @@
-package desafio_poo;
+package desafio_poo.interfaces;
 
 public interface NavegadorInternet {
 // exibirPagina, adicionarNovaAba, atualizarPagina

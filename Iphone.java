@@ -1,7 +1,9 @@
 package desafio_poo;
-
-import java.time.LocalTime;
 import java.util.Calendar;
+
+import desafio_poo.interfaces.AparelhoTelefonico;
+import desafio_poo.interfaces.NavegadorInternet;
+import desafio_poo.interfaces.ReprodutorMusical;
 
 public class Iphone implements ReprodutorMusical, AparelhoTelefonico, NavegadorInternet {
     private String modelo;
@@ -101,10 +103,10 @@ public class Iphone implements ReprodutorMusical, AparelhoTelefonico, NavegadorI
 
     public static void main(String[] args) {
         Iphone iphone = new Iphone("iPhone X", 64, "Preto");
-        int minutos = minutosRelevantes();
+        boolean minutos = minutosRelevantes();
 
         //  métodos da interface ReprodutorMusical
-        if(minutos >= 15 && minutos <= 55){
+        if(minutos){
             iphone.tocar();
             iphone.pausar();
             iphone.selecionarMusica("Nome da música");
@@ -112,7 +114,7 @@ public class Iphone implements ReprodutorMusical, AparelhoTelefonico, NavegadorI
         
 
         // métodos da interface NavegadorInternet
-        if(minutos >= 15 && minutos <= 55) {
+        if(minutos) {
             iphone.exibirPagina("https://www.youtube.com/watch?v=9ou608QQRq8&ab_channel=TuchilaRino");
             iphone.adicionarNovaAba("https://www.youtube.com/watch?v=9ou608QQRq8&ab_channel=TuchilaRino");
             iphone.atualizarPagina();
@@ -120,7 +122,7 @@ public class Iphone implements ReprodutorMusical, AparelhoTelefonico, NavegadorI
         
 
         // métodos da interface AparelhoTelefonico
-        if(minutos >= 15 && minutos <= 55) {
+        if(minutos) {
             iphone.ligar("123456789");
             iphone.atender();
             iphone.iniciarCorrerioVoz();
@@ -129,11 +131,11 @@ public class Iphone implements ReprodutorMusical, AparelhoTelefonico, NavegadorI
     }
 
 
-    private static int minutosRelevantes() {
+    private static boolean minutosRelevantes() {
         Calendar calendar = Calendar.getInstance();
         int minute = calendar.get(Calendar.MINUTE);
         
-        return minute;
+        return minute >= 15 && minute <= 55;
     }
 
 }
